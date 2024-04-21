@@ -27,5 +27,3 @@ bank_user = BankAccount.new("ela", 1223456, 100)
 puts "#{bank_user.owner}'s account: #{bank_user.account_num}, Balance: #{bank_user.balance} TL"
 bank_user.deposit(500)
 bank_user.withdraw(200)
-
-# My goal in this exercise is to learn the basics of oop
