@@ -1,0 +1,61 @@
+class Point
+  attr_accessor :x, :y
+
+  def initialize(x, y)
+    @x = x
+    @y = y
+  end
+
+  def to_s
+    "(#{@x}, #{@y})"
+  end
+
+  def self.right_left(p1, p2)
+    if p1.x > p2.x
+      "#{p1.to_s} on right #{p2.to_s} on left"
+    elsif p1.x < p2.x
+      "#{p1.to_s} on left #{p2.to_s} on right"
+    else
+      "Points are equals"
+    end
+  end
+
+  def self.distance_to(p1, p2)
+    Math.sqrt((p1.x - p2.x)**2 + (p1.y - p2.y)**2)
+  end
+
+  def self.bubble_sort(points)
+    n = points.length
+    (0...n).each do |i|
+      swapped = false
+      (0...n - i - 1).each do |j|
+        if points[j].x > points[j + 1].x || (points[j].x == points[j + 1].x && points[j].y > points[j + 1].y)
+          points[j], points[j + 1] = points[j + 1], points[j]
+          swapped = true
+        end
+      end
+      break unless swapped
+    end
+    points
+  end
+end
+
+# Create examples of point
+point2 = Point.new(7, 2)
+point1 = Point.new(1, 1)
+
+# Keep points as a series
+points = [point1, point2]
+
+# Sort points according to x coordinates
+sorted_points = Point.bubble_sort(points)
+
+puts "Ordered points:"
+sorted_points.each { |point| puts "(#{point.x}, #{point.y})" }
+
+# Calculate between of 2 points distance
+distance = Point.distance_to(point1, point2)
+puts "Distance of points: #{distance}"
+
+# Indicate between of 2 points location
+puts Point.right_left(point1, point2)
